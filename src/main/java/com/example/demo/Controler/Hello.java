@@ -12,17 +12,21 @@ public class Hello {
     @Autowired
     AddService addService;
 
-    @GetMapping("hello")
+    @GetMapping("/")
+    public String start() {
+        return "start";
+    }
+    @GetMapping("/hello")
     public String hello() {
         return "Hello";
     }
 
-    @GetMapping("hello/{name}")
+    @GetMapping("/hello/{name}")
     public String helloName( @PathVariable String name) {
         return "Hello my name is " + name;
     }
 
-    @GetMapping("hello/count/{num1}/{num2}")
+    @GetMapping("/hello/count/{num1}/{num2}")
     public String helloCount( @PathVariable int num1,@PathVariable int num2) {
         int sum = addService.add(num1,num2);
         return "sum number " + Integer.toString(num1) + " + " + Integer.toString(num2) + " = " + Integer.toString(sum) ;
